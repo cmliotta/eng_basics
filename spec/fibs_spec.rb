@@ -24,43 +24,59 @@ describe Fibs do
       end
 
       it 'does not call generate_fibs' do
-        # write an expectation for calling generate
+        expect { subject.generate(5) }.to_not raise_exception
       end
     end
   end
 
   describe '#is_known_fib?' do
     context 'when passed a fibonacci number that it has not stored' do
+      before do
+        subject.generate(5)
+      end
+
       it 'returns false' do
+        expect( subject.is_known_fib?(6) ).to eq(false)
       end
     end
 
     context 'when passed a number that has been stored' do
+      before do
+        subject.generate(5)
+      end
+
       it 'returns true' do
+        expect( subject.is_known_fib?(5) ).to eq(true)
       end
     end
   end
 
   describe '#all_fibs?' do
+    before do
+      subject.generate(6)
+    end
+
     context 'when passed an array of numbers that are all members of the the fibonacci sequence' do
       it 'returns true' do
+        expect(subject.all_fibs?([ 0, 1, 1, 2, 3])).to eq(true)
       end
     end
 
     context 'when passed an array of numbers that where at least one is not a member of the sequence' do
       it 'returns false' do
+        expect(subject.all_fibs?([0, 1, 1, 2, 4])).to eq(false)
       end
     end
   end
 
   describe '#known_fibs_sum_of_squares' do
     let(:expected_result) {
-      # the known sum of the squares
+      15
     }
 
     context 'when there are stored numbers' do
       before do
-        # seed generated_fibs
+        subject.generate(5)
       end
 
       it 'returns the sum of the squared values for all known fibs' do
