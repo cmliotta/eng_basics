@@ -1,4 +1,1 @@
-angular.module(
-  "VR",
-  []
-)
+angular.module("VR", [])

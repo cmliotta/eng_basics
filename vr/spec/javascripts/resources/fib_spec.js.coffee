@@ -1,5 +1,4 @@
 #= require angular
-#= require root
 #= require resources/fib
 #= require angular-mocks
 
@@ -89,4 +88,3 @@ describe 'Fib', ->
     it 'responds with successfully destroyed fib', ->
       expect(@serviceResult.id).toEqual(fib.id)
       expect(@serviceResult.name).toEqual(fib.name)
-
